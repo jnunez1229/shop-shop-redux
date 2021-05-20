@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {createStore, combineReducers} from 'redux';
+import reducer from './utils/reducers'
+
+const store = createStore(reducer)
 
 ReactDOM.render(
   <React.StrictMode>
