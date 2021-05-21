@@ -1,4 +1,3 @@
-import {useReducer} from 'react'
 import {
   UPDATE_PRODUCTS,
   UPDATE_CATEGORIES,
@@ -90,6 +89,3 @@ const reducer = (state, action) => {
 
 export default reducer
 
-export function useProductReducer(initialState) {
-  return useReducer(reducer, initialState);
-}

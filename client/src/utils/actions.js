@@ -7,57 +7,56 @@ const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
 const CLEAR_CART = 'CLEAR_CART';
 const TOGGLE_CART = 'TOGGLE_CART';
 
-export function updateFunction(data){
+export const updateconst = () => {
     return{
-        type: UPDATE_PRODUCTS,
-        data,
+        type: UPDATE_PRODUCTS
+        
     }
 }
 
-export function updateCat(data){
+export const updateCat = () => {
     return{
-        type: UPDATE_CATEGORIES,
-        data,
+        type: UPDATE_CATEGORIES
+        
     }
 }
 
-export function updateCurrentCat(data){
+export const updateCurrentCat = () => {
     return{
-        type: UPDATE_CURRENT_CATEGORY,
-        data,
+        type: UPDATE_CURRENT_CATEGORY
+        
     }
 }
-export function addMultiple(data){
+export const addMultiple = () => {
     return{
-        type: ADD_MULTIPLE_TO_CART,
-        data,
-    }
-}
-
-export function removeFromCart(data){
-    return{
-        type: REMOVE_FROM_CART,
-        data,
+        type: ADD_MULTIPLE_TO_CART
+        
     }
 }
 
-export function updateCartQuantity(data){
+export const removeFromCart = () => {
     return{
-        type: UPDATE_CART_QUANTITY,
-        data,
+        type: REMOVE_FROM_CART
+        
     }
 }
 
-export function clearCart(data){
+export const updateCartQuantity = () => {
     return{
-        type: CLEAR_CART,
-        data,
+        type: UPDATE_CART_QUANTITY
+        
     }
 }
 
-export function toggleCart(data){
+export const clearCart = () => {
     return{
-        type: TOGGLE_CART,
-        data,
+        type: CLEAR_CART
+        
+    }
+}
+
+export const toggleCart = () => {
+    return{
+        type: TOGGLE_CART
     }
 }
