@@ -8,4 +8,4 @@ const initialState = {
 
 
 
-export { initialState };
+export default { initialState };

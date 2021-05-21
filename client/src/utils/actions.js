@@ -7,7 +7,7 @@ const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
 const CLEAR_CART = 'CLEAR_CART';
 const TOGGLE_CART = 'TOGGLE_CART';
 
-export const updateconst = () => {
+export const updateProduct = () => {
     return{
         type: UPDATE_PRODUCTS
         
