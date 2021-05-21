@@ -1,47 +1,53 @@
-
+// import {
+//   UPDATE_PRODUCTS,
+//   UPDATE_CATEGORIES,
+//   UPDATE_CURRENT_CATEGORY,
+//   ADD_TO_CART,
+//   ADD_MULTIPLE_TO_CART,
+//   REMOVE_FROM_CART,
+//   UPDATE_CART_QUANTITY,
+//   CLEAR_CART,
+//   TOGGLE_CART
+// } from './actions';
 
 import initialState from './initialState'
   
-const reducer = (state = initialState, action) => {
+const reducer = (state= initialState, action) => {
   switch (action.type) {
       // if action type value is the value of `UPDATE_PRODUCTS`, return a new state object with an updated products array
-      case UPDATE_PRODUCTS:
+      case 'UPDATE_PRODUCTS':
       return {
         ...state,
         products: [...action.products],
       };
 
       // if action type value is the value of `UPDATE_CATEGORIES`, return a new state object with an updated categories array
-      case UPDATE_CATEGORIES:
+      case 'UPDATE_CATEGORIES':
       return {
         ...state,
         categories: [...action.categories]
       };
 
-      case UPDATE_CURRENT_CATEGORY:
+      case 'UPDATE_CURRENT_CATEGORY':
       return {
           ...state,
           currentCategory: action.currentCategory
       };
 
-      case ADD_TO_CART:
+      case 'ADD_TO_CART':
       return {
         ...state,
         cartOpen: true,
         cart: [...state.cart, action.product]
       };
 
-       // if it's none of these actions, do not update state at all and keep things the same!
-      default:
-      return state;
-
-      case ADD_MULTIPLE_TO_CART:
+      case 'ADD_MULTIPLE_TO_CART':
       return {
         ...state,
         cart: [...state.cart, ...action.products],
       };
 
-      case REMOVE_FROM_CART:
+      case 'REMOVE_FROM_CART':
       let newState = state.cart.filter(product => {
         return product._id !== action._id;
       });
@@ -52,7 +58,7 @@ const reducer = (state = initialState, action) => {
         cart: newState
       };
 
-      case UPDATE_CART_QUANTITY:
+      case 'UPDATE_CART_QUANTITY':
       return {
         ...state,
         cartOpen: true,
@@ -64,18 +70,22 @@ const reducer = (state = initialState, action) => {
         })
       };
 
-      case CLEAR_CART:
+      case 'CLEAR_CART':
       return {
         ...state,
         cartOpen: false,
         cart: []
       };
 
-      case TOGGLE_CART:
+      case 'TOGGLE_CART':
       return {
         ...state,
         cartOpen: !state.cartOpen
       };
+      
+      // if it's none of these actions, do not update state at all and keep things the same!
+      default:
+      return state;
    }
 };
 
