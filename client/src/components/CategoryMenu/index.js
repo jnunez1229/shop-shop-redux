@@ -7,8 +7,7 @@ import {useSelector, useDispatch} from 'react-redux'
 
 
 function CategoryMenu() {
-  const categories = useSelector(state => state.initialState.categories)
-  console.log(categories)
+  const categories = useSelector(state => state.categories)
   const dispatch = useDispatch()
 
   

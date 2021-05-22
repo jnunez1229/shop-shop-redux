@@ -14,7 +14,8 @@ const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 const Cart = () => {
 
-  const state = useSelector(state => state.initialstate)
+  const state = useSelector(state => state.cart)
+  console.log(state)
   const dispatch = useDispatch()
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
@@ -24,10 +25,10 @@ const Cart = () => {
       dispatch({ type: 'ADD_MULTIPLE_TO_CART', products: [...cart] });
     };
   
-    if (!state.cart.length) {
+    if (!state.length) {
       getCart();
     }
-  }, [state.cart.length, dispatch]);
+  }, [state.length, dispatch]);
 
   useEffect(() => {
     if (data) {
@@ -43,7 +44,7 @@ const Cart = () => {
 
   function calculateTotal() {
     let sum = 0;
-    state.cart.forEach(item => {
+    state.forEach(item => {
       sum += item.price * item.purchaseQuantity;
     });
     return sum.toFixed(2);
@@ -66,7 +67,7 @@ const Cart = () => {
       variables: { products: productIds }
     });
   
-    state.cart.forEach((item) => {
+    state.forEach((item) => {
       for (let i = 0; i < item.purchaseQuantity; i++) {
         productIds.push(item._id);
       }

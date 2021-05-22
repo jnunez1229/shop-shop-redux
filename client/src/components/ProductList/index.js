@@ -8,7 +8,7 @@ import { idbPromise } from "../../utils/helpers";
 import { useSelector, useDispatch} from 'react-redux'
 
 function ProductList() {
-const state = useSelector(state => state.initialState); 
+const state = useSelector(state => state.products); 
 const dispatch = useDispatch();
 
   const { currentCategory } = state;
@@ -40,16 +40,16 @@ const dispatch = useDispatch();
 
   function filterProducts() {
     if (!currentCategory) {
-      return state.products;
+      return state;
     }
 
-    return state.products.filter(product => product.category._id === currentCategory);
+    return state.filter(product => product.category._id === currentCategory);
   }
 
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
-      {state.products.length ? (
+      {state.length ? (
         <div className="flex-row">
             {filterProducts().map(product => (
                 <ProductItem
