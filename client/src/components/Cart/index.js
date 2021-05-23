@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
+import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
@@ -15,14 +15,13 @@ const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 const Cart = () => {
 
   const state = useSelector(state => state.cart)
-  console.log(state)
   const dispatch = useDispatch()
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
   useEffect(() => {
     async function getCart() {
       const cart = await idbPromise('cart', 'get');
-      dispatch({ type: 'ADD_MULTIPLE_TO_CART', products: [...cart] });
+      dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
     };
   
     if (!state.length) {
@@ -39,7 +38,8 @@ const Cart = () => {
   }, [data]);
 
   function toggleCart() {
-    dispatch({ type: 'TOGGLE_CART' });
+    // console.log('working')
+    dispatch({ type: TOGGLE_CART });
   }
 
   function calculateTotal() {
@@ -52,7 +52,7 @@ const Cart = () => {
 
   if (!state.cartOpen) {
     return (
-      <div className="cart-closed" onClick={toggleCart}>
+      <div className="cart-closed"  onClick={toggleCart}>
         <span
           role="img"
           aria-label="trash">🛒</span>

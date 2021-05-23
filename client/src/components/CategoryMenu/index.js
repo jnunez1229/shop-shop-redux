@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-// import { ''UPDATE_CATEGORIES', 'UPDATE_CURRENT_CATEGORY' } from '../../utils/actions';
+import { UPDATE_CATEGORIES, UPDATE_CURRENT_CATEGORY } from '../../utils/actions';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_CATEGORIES } from "../../utils/queries";
 import { idbPromise } from '../../utils/helpers';
@@ -16,7 +16,7 @@ function CategoryMenu() {
     useEffect(() => {
       if (categoryData) {
         dispatch({
-          type: 'UPDATE_CATEGORIES',
+          type: UPDATE_CATEGORIES,
           categories: categoryData.categories
         });
         categoryData.categories.forEach(category => {
@@ -25,7 +25,7 @@ function CategoryMenu() {
       } else if (!loading) {
         idbPromise('categories', 'get').then(categories => {
           dispatch({
-            type: 'UPDATE_CATEGORIES',
+            type: UPDATE_CATEGORIES,
             categories: categories
           });
         });
@@ -34,7 +34,7 @@ function CategoryMenu() {
 
   const handleClick = id => {
     dispatch({
-      type: 'UPDATE_CURRENT_CATEGORY',
+      type: UPDATE_CURRENT_CATEGORY,
       currentCategory: id
     });
   };

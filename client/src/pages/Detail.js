@@ -7,15 +7,15 @@ import spinner from '../assets/spinner.gif'
 import { idbPromise } from "../utils/helpers";
 import {useSelector, useDispatch} from 'react-redux'
 
-// import {
-//   'REMOVE_FROM_CART',
-//   'UPDATE_CART_QUANTITY',
-//   'ADD_TO_CART',
-//   'UPDATE_PRODUCTS',
-// } from '../utils/actions';
+import {
+  REMOVE_FROM_CART,
+  UPDATE_CART_QUANTITY,
+  ADD_TO_CART,
+  UPDATE_PRODUCTS,
+} from '../utils/actions';
 
 function Detail() {
-  const state = useSelector(state => state.initialstate)
+  const state = useSelector(state => state)
   const dispatch = useDispatch()
   const { id } = useParams();
   
@@ -24,13 +24,12 @@ function Detail() {
   const { loading, data } = useQuery(QUERY_PRODUCTS);
   
   const { products, cart } = state;
-
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id)
   
     if (itemInCart) {
       dispatch({
-        type: 'UPDATE_CART_QUANTITY',
+        type: UPDATE_CART_QUANTITY,
         _id: id,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
       });
@@ -41,7 +40,7 @@ function Detail() {
       });
     } else {
       dispatch({
-        type: 'ADD_TO_CART',
+        type: ADD_TO_CART,
         product: { ...currentProduct, purchaseQuantity: 1 }
       });
       // if product isn't in the cart yet, add it to the current shopping cart in IndexedDB
@@ -51,7 +50,7 @@ function Detail() {
 
   const removeFromCart = () => {
     dispatch({
-      type: 'REMOVE_FROM_CART',
+      type: REMOVE_FROM_CART,
       _id: currentProduct._id
     });
   };
@@ -64,7 +63,7 @@ function Detail() {
     // retrieved from server
     else if (data) {
       dispatch({
-        type: 'UPDATE_PRODUCTS',
+        type: UPDATE_PRODUCTS,
         products: data.products
       });
   
@@ -76,7 +75,7 @@ function Detail() {
     else if (!loading) {
       idbPromise('products', 'get').then((indexedProducts) => {
         dispatch({
-          type: 'UPDATE_PRODUCTS',
+          type: UPDATE_PRODUCTS,
           products: indexedProducts
         });
       });
